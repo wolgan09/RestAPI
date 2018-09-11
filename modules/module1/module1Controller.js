@@ -3,11 +3,12 @@ const module1Controller = {}
 
 module1Controller.login = ((req,res)=> {
     const { body } =  req
-    // console.log(req)
-    console.log(body)
-
     const { mobileNumber , password } = body
-    console.log(mobileNumber)
+    
+    if (mobileNumber === 1234567890 && password === 12345){
+        return res.status(200).json({"message":"Logged In"})
+    }
+
 })
 
 module.exports =  module1Controller

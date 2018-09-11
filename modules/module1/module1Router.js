@@ -6,7 +6,7 @@ const module1Router = express.Router()
 
 
 module1Router.use((req,res,next) => {
-    
+
     console.log(req.body)
     console.log(req.params)
     next()
