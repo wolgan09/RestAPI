@@ -4,7 +4,8 @@
   "description": "demo Rest APi",
   "main": "server.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "dev": "nodemon module/"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,8 @@
   "homepage": "https://github.com/Dexter7677/RestAPI#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "mongoose": "^5.2.14",
+    "nodemon": "^1.18.4"
   }
 }

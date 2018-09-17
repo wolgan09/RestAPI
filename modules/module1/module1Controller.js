@@ -7,6 +7,8 @@ module1Controller.login = ((req,res)=> {
     
     if (mobileNumber === 1234567890 && password === 12345){
         return res.status(200).json({"message":"Logged In"})
+    }else{
+        return res.status(401).json({"message":"Wrong credentails recieved"})
     }
 
 })
