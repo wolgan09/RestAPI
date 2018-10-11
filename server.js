@@ -3,6 +3,7 @@ let app = express()
 const bodyParser = require("body-parser");  
 
  
+require('./Config/database.js');
 
 app.use(bodyParser.json({ limit: "50mb", parameterLimit: 1000000 }));
 app.use(require('./router'))
@@ -20,7 +21,6 @@ app.use(require('./router'))
 //     next();
 //   });
   
-
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT,()=>{
