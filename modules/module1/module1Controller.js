@@ -43,14 +43,7 @@ module1Controller.register = ((req,res) => {
     })
 
   User.count({"email" : email}).then(result => {
-
-   let resultsss =  module1Controller.isUserAlreadyExists(email)
-    if (resultsss[1] == null){
-
-    }
-   
-
-        if (result > 0) {
+       if (result > 0) {
           res.status(400).json({"msg":"User Already Exists"})
         }else{
           user.save().then(result =>{
