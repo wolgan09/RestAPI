@@ -9,6 +9,7 @@ module1Router.use((req,res,next) => {
     next()
 })
 
-module1Router.get('/login',module1Controller.login)
+module1Router.post('/login',module1Controller.login)
+module1Router.post('/register',module1Controller.register)
 
 module.exports = module1Router
