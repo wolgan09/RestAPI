@@ -1,0 +1,5 @@
+{
+    "USER_ALREADY_EXISTS" : "User already exists with this email id",
+    "SIGNUP_SUCCESSFULL" : "User have been registered successfully",
+    "DATABASE_CONNECTED" : "Database connection successfull"
+}

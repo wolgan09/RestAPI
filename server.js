@@ -1,12 +1,16 @@
 let express = require("express")
 let app = express()
 const bodyParser = require("body-parser");  
-
+let translater = require('jm-ez-l10n')
  
 require('./Config/database.js');
 
 app.use(bodyParser.json({ limit: "50mb", parameterLimit: 1000000 }));
 app.use(require('./router'))
+
+//language setting
+translater.setTranslationsFile('en','./config/constant.en.json')
+app.use(translater.enableL10NExpress);
 
 // app.all("/*", (req, res, next) => {
 //     console.log(req)

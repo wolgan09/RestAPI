@@ -1,5 +1,9 @@
 let mongoose =  require("mongoose");
 
+
+
+
+
 mongoose.set("debug",true)
 mongoose.Promise = global.Promise
 
@@ -16,7 +20,7 @@ mongoose.Promise = global.Promise
 
 
 mongoose.connect('mongodb://localhost:27017/mydb').then(response =>{
-    console.log("connected to database")
+    console.log("Database connected")
 }).catch(error =>{
     console.log("error",error)
 })

@@ -40,19 +40,19 @@ module1Controller.register = ((req,res) => {
       password 
     })
 
-    module1Controller.isUserAlreadyExists(email).then((result,reject) => {
-        if (reject){
-           
-        }else if (result != null){
-             res.status(400).json({"msg":"User Already Exists"})
-        }
-       
-    }).catch(error => {
-        user.save().then(dbRes =>{
-            res.status(200).json({"msg":"saved"})
+    module1Controller.isUserAlreadyExists(email).then((result) => {
+       if (result.exists){
+        res.status(207).json({"msg":"USER_ALREADY_EXISTS"})
+       }else{
+            user.save().then(dbRes =>{
+            res.status(200).json({"msg":"SIGNUP_SUCCESSFULL"})
         }).catch(err => {
             res.status(500).json({"msg":"Database operation error"})
         })
+       }
+       
+    }).catch(error => {
+            res.status(403).json({"error":error})
     })
 })
 
@@ -64,9 +64,9 @@ module1Controller.isUserAlreadyExists = (email) => {
                 reject(error)
             }
             if (result == null){
-                reject({"msg":"No data found"})  
+                resolve({"exists":false})
             }else{
-                mresolve(result)
+                resolve({"exists":true})
             }
             
         })
