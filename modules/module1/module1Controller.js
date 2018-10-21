@@ -1,4 +1,3 @@
-
 const User = require("./module1Model")
 const module1Controller = {}
 
@@ -7,8 +6,7 @@ const module1Controller = {}
 module1Controller.login = ((req,res)=> {
     const { body } =  req
     const { mobileNumber , password } = body
-   
-
+    module1Controller.isUserAlreadyExists(mobileNumber)
 });
 
 module1Controller.checkUserExist = (req, res) => {
@@ -42,32 +40,37 @@ module1Controller.register = ((req,res) => {
       password 
     })
 
-  User.count({"email" : email}).then(result => {
-       if (result > 0) {
-          res.status(400).json({"msg":"User Already Exists"})
-        }else{
-          user.save().then(result =>{
-            res.status(200).json({"msg":"saved"})
-          }).catch(error => {
-            res.status(400).json({"msg":"User Not registred"})
-          })
+    module1Controller.isUserAlreadyExists(email).then((result,reject) => {
+        if (reject){
+           
+        }else if (result != null){
+             res.status(400).json({"msg":"User Already Exists"})
         }
+       
     }).catch(error => {
-      res.status(500).json({"msg":"Developer Error"})
+        user.save().then(dbRes =>{
+            res.status(200).json({"msg":"saved"})
+        }).catch(err => {
+            res.status(500).json({"msg":"Database operation error"})
+        })
     })
-   
-    
-
 })
 
 module1Controller.isUserAlreadyExists = (email) => {
-  User.findOne({"email" : email}).then((result) => {
-      return (result,null);
-  }).catch(err => {
-      return (null,err);
-  })
 
+    return new Promise((resolve, reject) => {
+        User.findOne({"email":email},(error, result) => {
+            if (error){
+                reject(error)
+            }
+            if (result == null){
+                reject({"msg":"No data found"})  
+            }else{
+                mresolve(result)
+            }
+            
+        })
+    })
 }
-
 
 module.exports =  module1Controller
